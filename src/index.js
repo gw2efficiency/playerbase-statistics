@@ -5,7 +5,7 @@ const playtimeHoursGroups = [
   [500, 1000],
   [1000, 2000],
   [2000, 4000],
-  [4000, null]
+  [4000]
 ]
 const quantiles = [0.995, 0.99, 0.90, 0.80, 0.50, 0.25, 0.10, 0.01]
 
@@ -24,12 +24,12 @@ export default function playerbaseStatistics (playerbase) {
 
   // Add a key each per playtime group
   playtimeHoursGroups.map(group => {
-    let key = 'playtime#' + group.join('-')
+    let key = 'playtime' + (group.length === 1 ? group : group.join('to'))
 
     // Filter the entries that match the playtime group
     let partialPlayerbaseValues = playerbase
       .filter(x => {
-        if (group[0] && x.playtime < group[0] * 60 * 60) {
+        if (x.playtime < group[0] * 60 * 60) {
           return false
         }
 
@@ -66,7 +66,7 @@ function calculateStatistics (playerbase) {
 
   // Get the value for each quantile
   quantiles.map(quantile => {
-    statistics[quantile] = round(stats.quantileSorted(playerbase, quantile), 2)
+    statistics['quantile' + quantile * 100] = round(stats.quantileSorted(playerbase, quantile), 2)
   })
 
   return statistics
