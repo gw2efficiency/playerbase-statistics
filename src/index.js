@@ -66,7 +66,8 @@ function calculateStatistics (playerbase) {
 
   // Get the value for each quantile
   quantiles.map(quantile => {
-    statistics['quantile' + quantile * 100] = round(stats.quantileSorted(playerbase, quantile), 2)
+    let key = 'quantile' + (quantile * 100).toString().replace('.', ',')
+    statistics[key] = round(stats.quantileSorted(playerbase, quantile), 2)
   })
 
   return statistics
