@@ -76,10 +76,10 @@ function calculateStatistics (playerbase) {
 function calculateGraphData (playerbase) {
   if (playerbase.length === 0) return []
 
-  // Generate 100 points for the graph, using the quantiles
+  // Generate 200 points for the graph, using 0.005 quantiles
   let points = []
-  for (let i = 0; i < 100; i++) {
-    points.push(round(stats.quantileSorted(playerbase, i / 100), 2))
+  for (let i = 0; i <= 1; i += 0.005) {
+    points.push(round(stats.quantileSorted(playerbase, i), 2))
   }
 
   return points
