@@ -118,6 +118,8 @@ describe('playerbase-statistics', () => {
       {value: 555, playtime: 36000},
       {value: 123, playtime: 7200}
     ])
+
+    expect(module([{value: 0, playtime: 10}]).leaderboard.length).to.equal(0)
   })
 
   it('can generate the statistics', () => {

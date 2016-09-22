@@ -45,9 +45,12 @@ export default function playerbaseStatistics (playerbase) {
     pushPlayerbaseData(key, partialPlayerbaseValues)
   })
 
+  // Generate the leaderboard
+  const leaderboard = playerbase.reverse().slice(0, 25).filter(x => x.value !== 0)
+
   // All calculations done, let's return!
   return {
-    leaderboard: playerbase.reverse().slice(0, 25),
+    leaderboard,
     statistics,
     graphData
   }
