@@ -16,7 +16,7 @@ npm install gw2e-playerbase-statistics
 ## Usage
 
 ```js
-const playerbaseStatistics = require('gw2e-playerbase-statistics')
+import playerbaseStatistics from 'gw2e-playerbase-statistics'
 
 // An **ordered** array of values with their playtime attached
 let playerbase = [
