@@ -1,6 +1,6 @@
 {
   "name": "gw2e-playerbase-statistics",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Calculate statistics and distributions of a value across the playerbase",
   "main": "./build/index.js",
   "scripts": {
