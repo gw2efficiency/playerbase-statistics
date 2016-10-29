@@ -4,9 +4,9 @@
   "description": "Calculate statistics and distributions of a value across the playerbase",
   "main": "./build/index.js",
   "scripts": {
-    "prepublish": "abc build",
     "build": "abc build",
-    "test": "abc test && abc lint"
+    "test": "abc test && abc lint",
+    "version": "abc build"
   },
   "author": "queicherius@gmail.com",
   "license": "MIT",
