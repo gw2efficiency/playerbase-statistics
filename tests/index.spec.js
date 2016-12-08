@@ -106,7 +106,7 @@ const testdata = [
   {value: 97, playtime: 600 * 60 * 60},
   {value: 98, playtime: 600 * 60 * 60},
   {value: 99, playtime: 600 * 60 * 60}
-].sort((a, b) => a.value - b.value)
+]
 
 describe('playerbase-statistics', () => {
   let result = module(testdata)
@@ -120,6 +120,37 @@ describe('playerbase-statistics', () => {
     ])
 
     expect(module([{value: 0, playtime: 10}]).leaderboard.length).to.equal(0)
+  })
+
+  it('can generate the ordered leaderboard for same values', () => {
+    let sameTestData = [
+      {value: 123, playtime: 4000 * 60 * 60},
+      {value: 123, playtime: 2 * 60 * 60},
+      {value: 100, playtime: 5 * 60 * 60},
+      {value: 100, playtime: 2 * 60 * 60},
+      {value: 100, playtime: 3 * 60 * 60},
+      {value: 123, playtime: 10 * 60 * 60},
+      {value: 123, playtime: 4 * 60 * 60},
+      {value: 10, playtime: 3 * 60 * 60},
+      {value: 123, playtime: 10 * 60 * 60},
+      {value: 123, playtime: 3 * 60 * 60},
+      {value: 123, playtime: 2 * 60 * 60}
+    ]
+
+    let result = module(sameTestData)
+    expect(result.leaderboard).to.deep.equal([
+      {value: 123, playtime: 2 * 60 * 60},
+      {value: 123, playtime: 2 * 60 * 60},
+      {value: 123, playtime: 3 * 60 * 60},
+      {value: 123, playtime: 4 * 60 * 60},
+      {value: 123, playtime: 10 * 60 * 60},
+      {value: 123, playtime: 10 * 60 * 60},
+      {value: 123, playtime: 4000 * 60 * 60},
+      {value: 100, playtime: 2 * 60 * 60},
+      {value: 100, playtime: 3 * 60 * 60},
+      {value: 100, playtime: 5 * 60 * 60},
+      {value: 10, playtime: 3 * 60 * 60}
+    ])
   })
 
   it('can generate the statistics', () => {

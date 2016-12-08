@@ -13,6 +13,10 @@ export default function playerbaseStatistics (playerbase) {
   let statistics = {}
   let graphData = {}
 
+  // Sort the playerbase by ascending value and descending playtime which makes the leaderboards
+  // use descending values (highest first) and ascending playtime (lowest first)
+  playerbase = playerbase.slice().sort((a, b) => a.value - b.value || b.playtime - a.playtime)
+
   // Add a statistic & graph for a partial playerbase
   function pushPlayerbaseData (key, partialPlayerbaseValues) {
     statistics[key] = calculateStatistics(partialPlayerbaseValues)
