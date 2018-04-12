@@ -18,7 +18,7 @@
     "abc-environment": "^2.0.0"
   },
   "dependencies": {
-    "round-to": "^2.0.0",
+    "round-to": "^3.0.0",
     "simple-statistics": "^4.1.1"
   }
 }
