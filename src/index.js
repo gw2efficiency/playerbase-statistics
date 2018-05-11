@@ -1,13 +1,15 @@
-import stats from 'simple-statistics'
+import * as stats from 'simple-statistics'
 import round from 'round-to'
-const playtimeHoursGroups = [
-  [1, 500],
-  [500, 1000],
-  [1000, 2000],
-  [2000, 4000],
-  [4000]
+
+const PLAYTIME_GROUPS = [
+  [1, 500], // 100th percentile
+  [500, 1000], // 80th percentile
+  [1000, 2000], // 60th percentile
+  [2000, 4000], // 40th percentile
+  [4000] // 20th percentile
 ]
-const quantiles = [0.995, 0.99, 0.90, 0.80, 0.50, 0.25, 0.10, 0.01]
+
+const PERCENTILES = [0.995, 0.99, 0.90, 0.80, 0.50, 0.25, 0.10, 0.01]
 
 export default function playerbaseStatistics (playerbase) {
   let statistics = {}
@@ -27,7 +29,7 @@ export default function playerbaseStatistics (playerbase) {
   pushPlayerbaseData('all', playerbase.map(x => x.value))
 
   // Add a key each per playtime group
-  playtimeHoursGroups.map(group => {
+  PLAYTIME_GROUPS.map(group => {
     let key = 'playtime' + (group.length === 1 ? group : group.join('to'))
 
     // Filter the entries that match the playtime group
@@ -71,8 +73,8 @@ function calculateStatistics (playerbase) {
     median: round(stats.medianSorted(playerbase), 2)
   }
 
-  // Get the value for each quantile
-  quantiles.map(quantile => {
+  // Get the value for each percentile
+  PERCENTILES.map(quantile => {
     let key = 'quantile' + (quantile * 100).toString().replace('.', ',')
     statistics[key] = round(stats.quantileSorted(playerbase, quantile), 2)
   })
@@ -83,7 +85,7 @@ function calculateStatistics (playerbase) {
 function calculateGraphData (playerbase) {
   if (playerbase.length === 0) return []
 
-  // Generate 200 points for the graph, using 0.005 quantiles
+  // Generate 200 points for the graph, using 0.005 percentiles
   let points = []
   for (let i = 0; i <= 1; i += 0.005) {
     points.push(round(stats.quantileSorted(playerbase, i), 2))
