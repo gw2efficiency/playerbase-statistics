@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "round-to": "^3.0.0",
-    "simple-statistics": "^6.0.1"
+    "simple-statistics": "^7.0.9"
   }
 }
