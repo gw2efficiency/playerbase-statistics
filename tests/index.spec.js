@@ -3,7 +3,7 @@ import {expect} from 'chai'
 import module from '../src/index.js'
 
 const testdata = [
-  {value: 99999, playtime: 4000 * 60 * 60},
+  {name: 'Foo.1234', value: 99999, playtime: 4000 * 60 * 60},
   {value: 123, playtime: 2 * 60 * 60},
   {value: 555, playtime: 10 * 60 * 60},
   {value: 0, playtime: 600 * 60 * 60},
