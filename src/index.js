@@ -53,8 +53,8 @@ export default function playerbaseStatistics (playerbase) {
 
   // Generate the leaderboard, stripping out all irrelevant information
   const leaderboard = playerbase
+    .slice(-25)
     .reverse()
-    .slice(0, 25)
     .filter(x => x.value !== 0)
     .map(x => ({ value: x.value, playtime: x.playtime }))
 
